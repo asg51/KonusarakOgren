@@ -1,0 +1,273 @@
+﻿@using Entities.Request
+@model CreateQuizRequest
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>The Easiest Way to Add Input Masks to Your Forms</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <link rel="stylesheet" href="~/css/quizCreation.css" />
+    <script>
+        $(document).ready(function () {
+            $('#birth-date').mask('00/00/0000');
+            $('#phone-number').mask('0000-0000');
+        })
+    </script>
+</head>
+<body  style="background-color: #56BAED">
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-controller="QuizList" asp-action="List">KonusarakOgren</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="QuizCreation" asp-action="CreateQuiz">Sınav Oluştur</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="QuizList" asp-action="List">Sınavlar</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8">
+            <form class="form-control" asp-action="CreateQuiz">
+                <div style="padding:15px 25px 0 25px;">
+                    <div class="form-group">
+                        <select id="quizList" class="form-control item" style="padding:0px;">
+                            @foreach (var item in ViewBag.listItems)
+                            {
+                                <option value=@item.Value>@item.Text</option>
+                            }
+                        </select>
+                        <input type="hidden" id="titleHidden" asp-for="Title" value="@ViewBag.listItems[0].Text" />
+                    </div>
+                    <div class="form-group">
+
+                        <div id="paragraph" class="form-control item">
+                            @ViewBag.paragraph
+                        </div>
+                        <input type="hidden" id="paragraphHidden" asp-for="Paragraph" value="@ViewBag.paragraph" />
+
+                    </div>
+                    <div class="form-control" style="color:lightgray; padding:15px; margin-bottom:15px;">
+                        <div class="form-group">
+                            <input type="text" class="form-control item" asp-for="QuestionOne.Paragraph" id="firstQuestion" placeholder="Write the first question" required>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <span>A)</span>
+                                    <input type="text" class="form-control item" asp-for="QuestionOne.OptionA" id="firstQuestionA" placeholder="" required>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <span>B)</span>
+                                    <input type="text" class="form-control item" asp-for="QuestionOne.OptionB" id="firstQuestionB" placeholder="" required>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <span>C)</span>
+                                    <input type="text" class="form-control item" asp-for="QuestionOne.OptionC" id="firstQuestionC" placeholder="" required>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <span>D)</span>
+                                    <input type="text" class="form-control item" asp-for="QuestionOne.OptionD" id="firstQuestionD" placeholder="" required>
+                                </div>
+                            </div>
+                        </div>
+                        <select id="quizList1" class="form-control item" asp-for="QuestionOne.TheRightOption" style="padding:0px;" required>
+                            <option value="" disabled selected>Doğru Şıkı Seçiniz</option>
+                            <option value=0>A</option>
+                            <option value=1>B</option>
+                            <option value=2>C</option>
+                            <option value=3>D</option>
+                        </select>
+                    </div>
+                    <div class="form-control" style="color: lightgray; padding: 15px; margin-bottom: 15px;">
+                        <div class="form-group">
+                            <input type="text" class="form-control item" asp-for="QuestionTwo.Paragraph" id="twoQuestion" placeholder="Write the second question" required>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <span>A)</span>
+                                    <input type="text" class="form-control item" asp-for="QuestionTwo.OptionA" id="twoQuestionA" placeholder="" required>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <span>B)</span>
+                                    <input type="text" class="form-control item" asp-for="QuestionTwo.OptionB" id="twoQuestionB" placeholder="" required>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <span>C)</span>
+                                    <input type="text" class="form-control item" asp-for="QuestionTwo.OptionC" id="twoQuestionC" placeholder="" required>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <span>D)</span>
+                                    <input type="text" class="form-control item" asp-for="QuestionTwo.OptionD" id="twoQuestionD" placeholder="" required>
+                                </div>
+                            </div>
+                        </div>
+                        <select id="quizList2" class="form-control item" asp-for="QuestionTwo.TheRightOption" style="padding:0px;" required>
+                            <option value="" disabled selected>Doğru Şıkı Seçiniz</option>
+                            <option value=0>A</option>
+                            <option value=1>B</option>
+                            <option value=2>C</option>
+                            <option value=3>D</option>
+                        </select>
+                    </div>
+                    <div class="form-control" style="color: lightgray; padding: 15px; margin-bottom: 15px;">
+                        <div class="form-group">
+                            <input type="text" class="form-control item" asp-for="QuestionThree.Paragraph" id="threeQuestion" placeholder="Write the third question" required>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <span>A)</span>
+                                    <input type="text" class="form-control item" asp-for="QuestionThree.OptionA" id="threeQuestionA" placeholder="" required>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <span>B)</span>
+                                    <input type="text" class="form-control item" asp-for="QuestionThree.OptionB" id="threeQuestionB" placeholder="" required>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <span>C)</span>
+                                    <input type="text" class="form-control item" asp-for="QuestionThree.OptionC" id="threeQuestionC" placeholder="" required>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <span>D)</span>
+                                    <input type="text" class="form-control item" asp-for="QuestionThree.OptionD" id="threeQuestionD" placeholder="" required>
+                                </div>
+                            </div>
+                        </div>
+                        <select id="quizList3" class="form-control item" asp-for="QuestionThree.TheRightOption" style="padding:0px;" required>
+                            <option value="" disabled selected>Doğru Şıkı Seçiniz</option>
+                            <option value=0>A</option>
+                            <option value=1>B</option>
+                            <option value=2>C</option>
+                            <option value=3>D</option>
+                        </select>
+                    </div>
+
+                    <div class="form-control" style="color: lightgray; padding: 15px; margin-bottom: 15px;">
+                        <div class="form-group">
+                            <input type="text" class="form-control item" asp-for="QuestionFour.Paragraph" id="fourQuestion" placeholder="Write the fourth question">
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <span>A)</span>
+                                    <input type="text" class="form-control item" asp-for="QuestionFour.OptionA" id="fourQuestionA" placeholder="" required>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <span>B)</span>
+                                    <input type="text" class="form-control item" asp-for="QuestionFour.OptionB" id="fourQuestionB" placeholder="" required>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <span>C)</span>
+                                    <input type="text" class="form-control item" asp-for="QuestionFour.OptionC" id="fourQuestionC" placeholder="" required>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <span>D)</span>
+                                    <input type="text" class="form-control item" asp-for="QuestionFour.OptionD" id="fourQuestionD" placeholder="" required>
+                                </div>
+                            </div>
+                        </div>
+                        <select id="quizList4" class="form-control item" asp-for="QuestionFour.TheRightOption" style="padding:0px;" required>
+                            <option value="" disabled selected>Doğru Şıkı Seçiniz</option>
+                            <option value=0>A</option>
+                            <option value=1>B</option>
+                            <option value=2>C</option>
+                            <option value=3>D</option>
+                        </select>
+                    </div>
+                    <div style="text-align:center;">
+                        <button type="submit" class="btn btn-secondary">Sınav Oluştur</button>
+                    </div>
+
+                </div>
+                @*<div class="form-group">
+                        <input type="text" class="form-control item" id="birth-date" placeholder="Birth Date">
+                    </div>
+                    <div class="form-group">
+                        <button type="button" class="btn btn-block create-account">Create Account</button>
+                    </div>*@
+            </form>
+        </div>
+        <div class="col-2"></div>
+    </div>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+    <script src="assets/js/script.js"></script>
+
+    <script>
+        $(function () {
+            //aynı ajaxmı kullanıcağımdan dolayı ajaxsetup oluştuyorum
+            $.ajaxSetup({
+                type: "post",
+                url: "/QuizCreation/List",//controlerımda gidicek olan yerim
+                dataType: "json"
+            });
+            $.extend({
+                quiz: function (value) {
+                    $.ajax({
+                        //ekstra olarak functionumaza gelen ilID mizi gönderiyoruz
+                        data: { "value": value },
+                        success: function (sonuc) {
+                            //bir önceki kayıtları temizliyorum
+                            $("#paragraph").html(sonuc.text);
+                            $("#paragraphHidden").val(sonuc.text);
+                        }
+                    });
+                }
+            });
+            //il selectimizde değişiklik olduğunda çalışacak func
+            $("#quizList").on("change", function () {
+                //seçili olan id alıyoruz
+                var id = $(this).val();
+                //seçili olan idmizi ilceGetir'imze gönderiyoruz
+                $.quiz(id);
+                $("#titleHidden").val($(this).find("option:selected").text());
+            });
+        });
+    </script>
+</body>
+</html>

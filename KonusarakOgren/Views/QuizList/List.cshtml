@@ -1,0 +1,24 @@
+﻿@using Entities.Dtos
+@model List<QuizDto>
+@{
+}<div style="background-color:white">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Başlık</th>
+                <th scope="col">Tarih</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td><a asp-action="Take" asp-controller="TakeAnQuiz" asp-route-id="@item.Id">@item.Title</a></td>
+                    <td>@item.DateTime.ToString()</td>
+                    <td><a asp-action="Delete" asp-controller="QuizList" asp-route-id="@item.Id">Sil</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

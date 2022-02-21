@@ -1,0 +1,45 @@
+﻿@using Entities.Request
+@model AdminRequest
+@{
+    Layout = null;
+}
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Snippet - GoSNippets</title>
+<link rel="stylesheet" href="~/css/login.css" />
+
+</head>
+<body>
+
+   
+      
+    <div class="wrapper fadeInDown">
+        <div id="formContent">
+            <!-- Tabs Titles -->
+            <h2 class="active" style="margin-bottom:25px;"> Kullanıcı Girişi </h2>
+
+            <!-- Icon -->
+            <div class="fadeIn first" style="margin-bottom:25px;">
+                <img src="https://files.sikayetvar.com/lg/cmp/16/16425.png?1522650125" id="icon" alt="User Icon" />
+            </div>
+
+            <!-- Login Form -->
+            <form asp-action="Login">
+                <input  asp-for="Name" type="text" id="Name" class="fadeIn second"  placeholder="Kullanıcı Adı">
+                <input  asp-for="Password" type="text" id="Password" class="fadeIn third" placeholder="Şifre">
+                <input type="submit" class="fadeIn fourth" value="Giriş Yap">
+            </form>
+
+            <!-- Remind Passowrd -->
+            <div id="formFooter">
+                <a class="underlineHover" href="#">Şifreni mi Unuttun?</a>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>

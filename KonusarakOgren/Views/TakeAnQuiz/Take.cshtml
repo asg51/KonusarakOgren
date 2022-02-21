@@ -1,0 +1,313 @@
+﻿@using Entities.Dtos
+@model TakeQuizDto
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>The Easiest Way to Add Input Masks to Your Forms</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <link rel="stylesheet" href="~/css/quizCreation.css" />
+    <script>
+        $(document).ready(function () {
+            $('#birth-date').mask('00/00/0000');
+            $('#phone-number').mask('0000-0000');
+        })
+    </script>
+</head>
+<body  style="background-color: #56BAED">
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-controller="QuizList" asp-action="List">KonusarakOgren</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="QuizCreation" asp-action="CreateQuiz">Sınav Oluştur</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="QuizList" asp-action="List">Sınavlar</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8">
+            <div class="form-control">
+                <div style="padding:15px 25px 0 25px;">
+                    <div class="form-group">
+                        <div id="paragraph" class="form-control item" style="font-size:24px;">
+                            @Model.Title
+                        </div>
+                    </div>
+                    <div class="form-group">
+
+                        <div id="paragraph" class="form-control item">
+                            @Model.Paragraph
+                        </div>
+                    </div>
+                    <div class="form-control" style="color:lightgray; padding:15px; margin-bottom:15px;">
+                        <div class="form-group">
+                            <div id="firstQuestion" class="form-control item">
+                                @Model.QuestionOne.Paragraph
+                            </div>
+                            <input type="hidden" id="firstQuestionId" value="@Model.QuestionFour.Id" />
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <span>A)</span>
+                                    <button class="form-control item" id="firstQuestionA" onclick="ChooseOption(1,1, this)" style="text-align:left;">@Model.QuestionOne.OptionA</button>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <span>B)</span>
+                                    <button class="form-control item" id="firstQuestionB" onclick="ChooseOption(1,2, this)" style="text-align:left;">@Model.QuestionOne.OptionB</button>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <span>C)</span>
+                                    <button class="form-control item" id="firstQuestionC" onclick="ChooseOption(1,3, this)" style="text-align:left;">@Model.QuestionOne.OptionC</button>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <span>D)</span>
+                                    <button class="form-control item" id="firstQuestionD" onclick="ChooseOption(1,4, this)" style="text-align:left;">@Model.QuestionOne.OptionD</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-control" style="color: lightgray; padding: 15px; margin-bottom: 15px;">
+                        <div class="form-group">
+                            <div id="twoQuestion" class="form-control item">
+                                @Model.QuestionTwo.Paragraph
+                            </div>
+                            <input type="hidden" id="twoQuestionId" value="@Model.QuestionFour.Id" />
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <span>A)</span>
+                                    <button class="form-control item" id="twoQuestionA" onclick="ChooseOption(2,1, this)" style="text-align:left;">@Model.QuestionTwo.OptionA</button>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <span>B)</span>
+                                    <button class="form-control item" id="twoQuestionB" onclick="ChooseOption(2,2, this)" style="text-align:left;">@Model.QuestionTwo.OptionB</button>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <span>C)</span>
+                                    <button class="form-control item" id="twoQuestionC" onclick="ChooseOption(2,3, this)" style="text-align:left;">@Model.QuestionTwo.OptionC</button>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <span>D)</span>
+                                    <button class="form-control item" id="twoQuestionD" onclick="ChooseOption(2,4, this)" style="text-align:left;">@Model.QuestionTwo.OptionD</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-control" style="color: lightgray; padding: 15px; margin-bottom: 15px;">
+                        <div class="form-group">
+                            <div id="threeQuestion" class="form-control item">
+                                @Model.QuestionThree.Paragraph
+                            </div>
+                            <input type="hidden" id="threeQuestionId" value="@Model.QuestionFour.Id" />
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <span>A)</span>
+                                    <button class="form-control item" id="threeQuestionA" onclick="ChooseOption(3,1, this)" style="text-align:left;">@Model.QuestionThree.OptionA</button>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <span>B)</span>
+                                    <button class="form-control item" id="threeQuestionB" onclick="ChooseOption(3,2, this)" style="text-align:left;">@Model.QuestionThree.OptionB</button>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <span>C)</span>
+                                    <button class="form-control item" id="threeQuestionC" onclick="ChooseOption(3,3, this)" style="text-align:left;">@Model.QuestionThree.OptionC</button>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <span>D)</span>
+                                    <button class="form-control item" id="threeQuestionD" onclick="ChooseOption(3,4, this)" style="text-align:left;">@Model.QuestionThree.OptionD</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-control" style="color: lightgray; padding: 15px; margin-bottom: 15px;">
+                        <div class="form-group">
+                            <div id="fourQuestion" class="form-control item">
+                                @Model.QuestionFour.Paragraph
+                            </div>
+                            <input type="hidden" id="fourQuestionId" value="@Model.QuestionFour.Id" />
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <span>A)</span>
+                                    <button class="form-control item" id="fourQuestionA" onclick="ChooseOption(4,1, this)" style="text-align:left;">@Model.QuestionFour.OptionA</button>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <span>B)</span>
+                                    <button class="form-control item" id="fourQuestionB" onclick="ChooseOption(4,2, this)" style="text-align:left;">@Model.QuestionFour.OptionB</button>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <span>C)</span>
+                                    <button class="form-control item" id="fourQuestionC" onclick="ChooseOption(4,3, this)" style="text-align:left;">@Model.QuestionFour.OptionC</button>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <span>D)</span>
+                                    <button class="form-control item" id="fourQuestionD" onclick="ChooseOption(4, 4, this)" style="text-align:left;">@Model.QuestionFour.OptionD</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="text-align:center;">
+                        <button onclick="Result()" class="btn btn-secondary">Sonuç</button>
+                    </div>
+
+                </div>
+            </div>
+            @*<div class="form-group">
+                    <input type="text" class="form-control item" id="birth-date" placeholder="Birth Date">
+                </div>
+                <div class="form-group">
+                    <button type="button" class="btn btn-block create-account">Create Account</button>
+                </div>*@
+
+        </div>
+        <div class="col-2"></div>
+    </div>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+    <script src="assets/js/script.js"></script>
+
+    <script>
+        questionOneItem = null;
+        questionTwoItem = null;
+        questionThreeItem = null;
+        questionFourItem = null;
+
+        questionOneOption = 5;
+        questionTwoOption = 5;
+        questionThreeOption = 5;
+        questionFourOption = 5;
+
+        function ChooseOption(questionId, option, item) {
+            if (questionId == 1) {
+                questionOneOption = option;
+                $("#firstQuestionA").css("background-color", "white");
+                $("#firstQuestionB").css("background-color", "white");
+                $("#firstQuestionC").css("background-color", "white");
+                $("#firstQuestionD").css("background-color", "white");
+                questionOneItem = item;
+            }
+
+            else if (questionId == 2) {
+                questionTwoOption = option;
+                $("#twoQuestionA").css("background-color", "white");
+                $("#twoQuestionB").css("background-color", "white");
+                $("#twoQuestionC").css("background-color", "white");
+                $("#twoQuestionD").css("background-color", "white");
+                questionTwoItem = item;
+            }
+            else if (questionId == 3) {
+                questionThreeOption = option;
+                $("#threeQuestionA").css("background-color", "white");
+                $("#threeQuestionB").css("background-color", "white");
+                $("#threeQuestionC").css("background-color", "white");
+                $("#threeQuestionD").css("background-color", "white");
+                questionThreeItem = item;
+            }
+            else if (questionId == 4) {
+                questionFourOption = option;
+                $("#fourQuestionA").css("background-color", "white");
+                $("#fourQuestionB").css("background-color", "white");
+                $("#fourQuestionC").css("background-color", "white");
+                $("#fourQuestionD").css("background-color", "white");
+                questionFourItem = item;
+            }
+            $("#" + item.id).css("background-color", "grey");
+        };
+        function Result() {
+            //aynı ajaxmı kullanıcağımdan dolayı ajaxsetup oluştuyorum
+            $.ajaxSetup({
+                type: "post",
+                url: "/TakeAnQuiz/Result",//controlerımda gidicek olan yerim
+                dataType: "json",
+            });
+            $.extend({
+                quiz: function (data, item, value) {
+                    $.ajax({
+                        //ekstra olarak functionumaza gelen ilID mizi gönderiyoruz
+                        data: { "data": data },
+                        success: function (sonuc) {
+                            if (sonuc == "True") {
+                                $("#" + item.id).css("background-color", "green");
+                            }
+                            else if (sonuc == "False") {
+                                $("#" + item.id).css("background-color", "red");
+                            }
+                        }
+                    });
+                }
+            });
+            if (questionOneItem != null) {
+                var data = JSON.stringify({ Id: $("#firstQuestionId").val(), Value: questionOneOption - 1 });
+                $.quiz(data, questionOneItem, questionOneOption - 1);
+            }
+
+            if (questionTwoItem != null) {
+                var data = JSON.stringify({ Id: $("#twoQuestionId").val(), Value: questionTwoOption - 1 });
+                $.quiz(data, questionTwoItem, questionTwoOption - 1);
+            }
+
+            if (questionThreeItem != null) {
+                var data = JSON.stringify({ Id: $("#threeQuestionId").val(), Value: questionThreeOption - 1 });
+                $.quiz(data, questionThreeItem, questionThreeOption - 1);
+            }
+
+            if (questionFourItem != null) {
+                var data = JSON.stringify({ Id: $("#fourQuestionId").val(), Value: questionFourOption - 1 });
+                $.quiz(data, questionFourItem, questionFourOption - 1);
+            }
+        };
+    </script>
+</body>
+</html>
